@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "262835571788",
+    "firebase_url": "https://tgd-experiment.firebaseio.com",
+    "project_id": "tgd-experiment",
+    "storage_bucket": "tgd-experiment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262835571788:android:e2f0ee9b3a31f74f",
+        "android_client_info": {
+          "package_name": "space.hyperr.quickbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262835571788-7crapra1fhn3njldkq5fnhji5okddgnp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "space.hyperr.quickbook",
+            "certificate_hash": "9e4814cfadb72b9ee2b5ba90b917d7c02e7bed81"
+          }
+        },
+        {
+          "client_id": "262835571788-iul7q7oaffd8b4grbk6vtgd6664djn5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBou9C9bOARDAgI1XqnH9M2IOR1p7ThZA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262835571788-fbpohabbkld88tfqlvfe1f1oebt4dlfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
