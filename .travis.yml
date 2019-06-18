@@ -11,6 +11,9 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
+    
+env:
+    - secure: "nTD5tCline+42bE4bKIQwxAG5V4z/W0jWXROVzNWHyimQmINZAPK6/nW+Uhrw0gjT8VlovBiP3QedByyD7YRNCIHlDcBiTno6X2VRSyDHy4aCC4aOkCp1fteAmF+7LIJf3HrqaOvMHR0hZf5Tcze3w5NVuusdcbj1Q1r0z0+LH2fIYjKRrVNaFyKiba24eqomi9hROKuGCfpz9E9AsVGhPfVmlNVHWeIKxKKCPF/+0nlodO+8BYMkRI5JUBb3aMn63P7WEbawH+RUT7G4NycPg7z5dDm21TnkOZVr2g8skS96xRoRlJr16vz4pSTPT9LXCi+MIvQLfzxuvsMxirmInHck9jPsYrAF+Bqr5pOJgfWp4Y5DILRls9rC6uTUD/DKV8BY8HbamMwrPIboNFkAOebt2Vrt1mxCLZOUJMXEAB86jN2jiFW4bhboIdQEU50cyBpiaP+mbcXv7C9Dqp5T1QYi0HZvBr1G8JBzYJg9/GehgnsCHEXk1oOgi11uQgknhB55P0rplP/sT9yuVudJYstPAh2KDHf3j+IBJHW2Xe+h8l7LcPedvijJ/cODW7OD9Hly6+gqpUs5ABVPJ0XD/IeBtD5MrtZKjvceLFnIxkOgSdM15+nyD4IzX80F5tPA9RnE1ztZDqsF88Z/BdU1ACQT5K671QSqtKG8UtHOxU="
 
 android:
   components:
@@ -33,8 +36,33 @@ android:
     # if you need to run emulator(s) during your tests
     - sys-img-x86_64-android-29
     
+before_install:
+    - openssl aes-256-cbc -K $encrypted_c6f96877f600_key -iv $encrypted_c6f96877f600_iv -in volatile_keystore.jks.enc -out volatile_keystore.jks -d
+    
 before_script:
-  - echo no | android create avd --force -n test -t android-29 --abi x86_64 -c 16000M
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+    - echo no | android create avd --force -n test -t android-29 --abi x86_64 -c 16000M
+    - emulator -avd test -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
+    
+script:
+    - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+  
+before_deploy:
+    - cp $TRAVIS_BUILD_DIR/.keystore $HOME
+    - cd app/build/outputs/apk/
+    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystore.jks -storepass $storepass -keypass $storepass app-release-unsigned.apk volatile_keystore.jks
+    # Verification
+    - jarsigner -verify app-release-unsigned.apk
+    - "${ANDROID_HOME}/build-tools/29.0.0/zipalign -v 4 app-release-unsigned.apk Quick\ Book.apk"
+deploy:
+  provider: releases
+  file: "Quick\ Book.apk"
+  skip_cleanup: true
+
+  on:
+    repo: siddhantvinchurkar/quickbook
+    tags: true
+    jdk: oraclejdk8
+  api_key:
+  secure: "B/CdRg0TogLCmpr0QN5jNP+jiTJqBfTjp9VymKRf7KBmpP+jo6FuQHMz38byICHzz8oaPx5jZNeli8AcQXmU3viJT5pOw7HyzemB3gz1CBQzOdq7wGbqa4Vk/FkgXR8t/qff8EzJ082MCHoajTzV7J+yL68J7iJyCq/WZqXVwGzR0ld/S6/w9ftra03QTZojRLSeoqdqlq1T4vwpUC0jm1tCjW/chHm2rw4UrH9KCulJRgSHpx+ty94sRlkH2FCcyFzTisIqnwW/g+hy6FLWwRNfHrNaf93330g8ehn16zweDEZY14DRe3jcHZ9cQstNgdE4+aAykXg/nVs6vazsQYQ7CXzp3eiTSgoeg9ERT7m0elmee7DpWrl3Lb6Gr2LEz/VjIkpisXSbUbsuxiCgTnRCgOQGV5E2U6sHkj++edopETzcOPhaLbN2IT/FFXEbYJaUS3bT5aSjZ44Pz3ULEXY/Z+li06VF6edEZ0LyC/sLd8W194oByuQOXs0OU44ml98IfolE2f8Wrxw7NPMX4zpBrLjJQy4I8v1xVlhCwQxsYiDnLMIzDn3QYAaiJWVdeFNkNQxSdt9ujk6pWwyTeT1crXdq1MaIbQc2RPXm2LLJ+gZDur33ghiAuL8VOrRt0GDM0+ZOftBGI1bMOUoUavkBkfzXyHdWlV3EnJ+ycRk="
