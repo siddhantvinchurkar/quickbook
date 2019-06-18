@@ -41,14 +41,14 @@ public class IntroductionActivity1 extends AppCompatActivity {
             public void run() {
                 introduction_screen_1_subtitle_1.animateText(getString(R.string.introduction_screen_1_subtitle_1));
             }
-        }, 3000);
+        }, 2000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 introduction_screen_1_subtitle_2.animateText(getString(R.string.introduction_screen_1_subtitle_2));
             }
-        }, 4500);
+        }, 2500);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -56,7 +56,7 @@ public class IntroductionActivity1 extends AppCompatActivity {
                 buttonNext1.setForeground(getDrawable(R.drawable.transparent));
                 buttonNext1.setClickable(true);
             }
-        }, 5500);
+        }, 3500);
 
         /* Handle 'Next' button click */
         buttonNext1.setOnClickListener(new View.OnClickListener() {

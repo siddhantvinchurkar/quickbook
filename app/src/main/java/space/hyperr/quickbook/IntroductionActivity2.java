@@ -46,28 +46,28 @@ public class IntroductionActivity2 extends AppCompatActivity {
             public void run() {
                 introduction_screen_2_subtitle_1.animateText(getString(R.string.introduction_screen_2_subtitle_1));
             }
-        }, 3000);
+        }, 2000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 introduction_screen_2_subtitle_2.animateText(getString(R.string.introduction_screen_2_subtitle_2));
             }
-        }, 4500);
+        }, 2500);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 introduction_screen_2_subtitle_3.animateText(getString(R.string.introduction_screen_2_subtitle_3));
             }
-        }, 5000);
+        }, 3000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if(getApplication() != null) ActivityCompat.requestPermissions(IntroductionActivity2.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE},0);
             }
-        }, 6500);
+        }, 3500);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -75,7 +75,7 @@ public class IntroductionActivity2 extends AppCompatActivity {
                 buttonNext2.setForeground(getDrawable(R.drawable.transparent));
                 buttonNext2.setClickable(true);
             }
-        }, 7000);
+        }, 4500);
 
         /* Handle 'Next' button click */
         buttonNext2.setOnClickListener(new View.OnClickListener() {

@@ -62,21 +62,21 @@ public class IntroductionActivity3 extends AppCompatActivity {
             public void run() {
                 introduction_screen_3_subtitle_1.animateText(getString(R.string.introduction_screen_3_subtitle_1));
             }
-        }, 3000);
+        }, 2000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 introduction_screen_3_subtitle_2.animateText(getString(R.string.introduction_screen_3_subtitle_2));
             }
-        }, 3500);
+        }, 2500);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 introduction_screen_3_subtitle_3.animateText(getString(R.string.introduction_screen_3_subtitle_3));
             }
-        }, 4000);
+        }, 3500);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -84,7 +84,7 @@ public class IntroductionActivity3 extends AppCompatActivity {
                 introduction_screen_3_email_address.setVisibility(View.VISIBLE);
                 introduction_screen_3_phone_number.setVisibility(View.VISIBLE);
             }
-        }, 5000);
+        }, 4500);
 
         introduction_screen_3_email_address.addTextChangedListener(new TextWatcher() {
             @Override
