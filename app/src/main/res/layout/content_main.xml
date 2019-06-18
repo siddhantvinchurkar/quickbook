@@ -8,13 +8,56 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="100dp"
+            android:padding="10dp"
+            android:text="@string/main_screen_placeholder_1"
+            android:textSize="20sp"
+            android:id="@+id/main_screen_placeholder_1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textAlignment="viewEnd"
+            android:layout_marginBottom="22dp"
+            android:padding="80dp"
+            android:text="@string/main_screen_placeholder_2"
+            android:textSize="20sp"
+            android:id="@+id/main_screen_placeholder_2"
+            android:layout_above="@id/main_screen_placeholder_3"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textAlignment="viewEnd"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="70dp"
+            android:padding="10dp"
+            android:text="@string/main_screen_placeholder_3"
+            android:textSize="20sp"
+            android:id="@+id/main_screen_placeholder_3"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textAlignment="viewStart"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/main_screen_main_content"/>
+        </ScrollView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

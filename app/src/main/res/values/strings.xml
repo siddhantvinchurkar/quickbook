@@ -1,4 +1,41 @@
 <resources>
     <string name="app_name">Quick Book</string>
+    <string name="title_activity_main">Attendance</string>
+    <string name="next">Next</string>
+    <string name="finish">Let\'s go!</string>
+    <string name="introduction_screen_1_title">Hi!</string>
+    <string name="introduction_screen_1_subtitle_1">Let\'s get you started!</string>
+    <string name="introduction_screen_1_subtitle_2">Press the \'Next\' button.</string>
+    <string name="introduction_screen_2_title">Okay,</string>
+    <string name="introduction_screen_2_subtitle_1">Now grant permissions?</string>
+    <string name="introduction_screen_2_subtitle_2">Camera and external storage permissions</string>
+    <string name="introduction_screen_2_subtitle_3">are required to scan QR codes.</string>
+    <string name="introduction_screen_3_title">Alright,</string>
+    <string name="introduction_screen_3_subtitle_1">Now enter your email address and</string>
+    <string name="introduction_screen_3_subtitle_2">phone number so we\'ll know it\'s you</string>
+    <string name="introduction_screen_3_subtitle_3">when you come back.</string>
+    <string name="main_screen_title">Booking History</string>
+    <string name="main_screen_placeholder_1">Your booking history will show up here when you start using this app.</string>
+    <string name="main_screen_placeholder_2">New Booking</string>
+    <string name="main_screen_placeholder_3">Scan QR code</string>
+    <string name="booking_screen_welcome">New Booking!</string>
+    <string name="booking_screen_hint_0">Scroll Away!</string>
+    <string name="booking_screen_hint_1">First Name</string>
+    <string name="booking_screen_hint_2">Last Name</string>
+    <string name="booking_screen_hint_3">Venue</string>
+    <string name="booking_screen_hint_4">Date Of Event</string>
+    <string name="booking_screen_hint_5">Start Time</string>
+    <string name="booking_screen_hint_6">End Time</string>
+    <string name="booking_screen_confirm">Confirm Booking</string>
+    <string name="booking_screen_previous">Go back</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Flags and constants -->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="header_video_default_url" translatable="false">https://firebasestorage.googleapis.com/v0/b/survival-of-the-fittest-399dc.appspot.com/o/header.mp4?alt=media&amp;token=348b8e9f\-11ab\-4e23\-82ae\-f2a16e0da945</string>
+
+    <!-- API Keys -->
+    <string name="shodan_api_key" translatable="false">2X7ymEt9qcTxGBXNhiix52mM1yRNN2kL</string>
+    <string name="google_oauth_client_id" translatable="false">711987927258\-7osgtcgfhqcfnk23oqfs2hpa9mtrq9hr.apps.googleusercontent.com</string>
+
 </resources>

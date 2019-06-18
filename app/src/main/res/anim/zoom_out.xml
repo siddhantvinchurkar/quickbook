@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Copyright © Volatile, Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Siddhant Vinchurkar <siddhantvinchurkar@gmail.com>, December 2018
+-->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:zAdjustment="top">
+    <alpha android:fromAlpha="0" android:toAlpha="1.0"
+        android:duration="@android:integer/config_mediumAnimTime"/>
+</set>

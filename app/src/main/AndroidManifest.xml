@@ -3,7 +3,12 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="space.hyperr.quickbook">
 
-    <dist:module dist:instant="true" />
+    <dist:module dist:instant="true" /> <!-- Permissions required by app -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,16 +17,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".BookingActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".IntroductionActivity1" android:screenOrientation="portrait" />
+        <activity android:name=".IntroductionActivity2" android:screenOrientation="portrait" />
+        <activity android:name=".IntroductionActivity3" android:screenOrientation="portrait" />
+        <activity android:name=".SplashActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "https://quickbook.page.link/open” -->
+                <data
+                    android:host="quickbook.page.link"
+                    android:pathPrefix="/open"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_screen_title"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2c90847883b20ceb8cc91cfc3cd163646eb16658" />
     </application>
 
 </manifest>
