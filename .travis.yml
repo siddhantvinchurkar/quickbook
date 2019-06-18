@@ -11,9 +11,6 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
-    
-env:
-    - secure: "nTD5tCline+42bE4bKIQwxAG5V4z/W0jWXROVzNWHyimQmINZAPK6/nW+Uhrw0gjT8VlovBiP3QedByyD7YRNCIHlDcBiTno6X2VRSyDHy4aCC4aOkCp1fteAmF+7LIJf3HrqaOvMHR0hZf5Tcze3w5NVuusdcbj1Q1r0z0+LH2fIYjKRrVNaFyKiba24eqomi9hROKuGCfpz9E9AsVGhPfVmlNVHWeIKxKKCPF/+0nlodO+8BYMkRI5JUBb3aMn63P7WEbawH+RUT7G4NycPg7z5dDm21TnkOZVr2g8skS96xRoRlJr16vz4pSTPT9LXCi+MIvQLfzxuvsMxirmInHck9jPsYrAF+Bqr5pOJgfWp4Y5DILRls9rC6uTUD/DKV8BY8HbamMwrPIboNFkAOebt2Vrt1mxCLZOUJMXEAB86jN2jiFW4bhboIdQEU50cyBpiaP+mbcXv7C9Dqp5T1QYi0HZvBr1G8JBzYJg9/GehgnsCHEXk1oOgi11uQgknhB55P0rplP/sT9yuVudJYstPAh2KDHf3j+IBJHW2Xe+h8l7LcPedvijJ/cODW7OD9Hly6+gqpUs5ABVPJ0XD/IeBtD5MrtZKjvceLFnIxkOgSdM15+nyD4IzX80F5tPA9RnE1ztZDqsF88Z/BdU1ACQT5K671QSqtKG8UtHOxU="
 
 android:
   components:
