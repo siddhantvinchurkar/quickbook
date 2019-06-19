@@ -44,3 +44,5 @@ deploy:
     repo: siddhantvinchurkar/quickbook
     tags: true
   api_key: "$gak"
+after_deploy:
+ - echo "App Deployed!"
