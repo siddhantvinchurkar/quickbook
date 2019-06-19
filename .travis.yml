@@ -19,7 +19,7 @@ android:
   - extra
   - sys-img-x86_64-android-29
 before_install:
-- openssl aes-256-cbc -K $encrypted_c6f96877f600_key -iv $encrypted_c6f96877f600_iv 
+- openssl aes-256-cbc -K $encrypted_8fe2421a2225_key -iv $encrypted_8fe2421a2225_iv
   -in volatile_keystore.jks.enc -out volatile_keystore.jks -d
 before_script:
 - echo no | android create avd --force -n test -t android-29 --abi x86_64 -c 16000M
@@ -44,4 +44,4 @@ deploy:
     tags: true
   api_key: "$gak"
 after_deploy:
- - echo "App Deployed!"
+- echo "App Deployed!"
