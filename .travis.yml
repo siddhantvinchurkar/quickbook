@@ -1,5 +1,5 @@
 sudo: required
-matrix:
+jobs:
   include:
   
     - language: android
