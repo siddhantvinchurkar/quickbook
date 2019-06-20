@@ -24,7 +24,7 @@ before_install:
 script:
 - ./gradlew clean build
 before_deploy:
-- cp volatile_keystore.jks app/build/outputs/apk/volatile_keystore.jks
+- cp volatile_keystore.jks app/build/outputs/apk/release/volatile_keystore.jks
 - cd app/build/outputs/apk/release
 - ls
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore volatile_keystore.jks
