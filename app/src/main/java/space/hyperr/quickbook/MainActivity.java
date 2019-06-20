@@ -80,95 +80,95 @@ public class MainActivity extends AppCompatActivity {
         Universe.email = sharedPreferences.getString("email_address", "siddhantvinchurkar@gmail.com");
         Universe.phone = sharedPreferences.getString("phone_number", "+919900608821");
 
-        db.collection("quickbook-bookings")/*.whereEqualTo("email", Universe.email).whereEqualTo("phone", Universe.phone)*/.orderBy("first_name").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("quickbook-bookings").whereEqualTo("email", Universe.email).whereEqualTo("phone", Universe.phone).orderBy("first_name").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                main_screen_main_content.setText(null);
-                if(queryDocumentSnapshots.getDocuments().toArray().length > 1){
-                    main_screen_placeholder_1.setVisibility(View.GONE);
-                    main_screen_placeholder_2.setVisibility(View.GONE);
-                    main_screen_placeholder_3.setVisibility(View.GONE);
-                    main_screen_main_content.setVisibility(View.VISIBLE);
+                if (queryDocumentSnapshots != null) {
+                    main_screen_main_content.setText(null);
+                    if (queryDocumentSnapshots.getDocuments().toArray().length > 1) {
+                        main_screen_placeholder_1.setVisibility(View.GONE);
+                        main_screen_placeholder_2.setVisibility(View.GONE);
+                        main_screen_placeholder_3.setVisibility(View.GONE);
+                        main_screen_main_content.setVisibility(View.VISIBLE);
+                    } else {
+                        main_screen_placeholder_1.setVisibility(View.VISIBLE);
+                        main_screen_placeholder_2.setVisibility(View.VISIBLE);
+                        main_screen_placeholder_3.setVisibility(View.VISIBLE);
+                        main_screen_main_content.setVisibility(View.GONE);
+                    }
+                    classList = new StringBuilder();
+                    classList.append("Here's your booking history: <br /><br />");
+                    for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                        booking_status = doc.getBoolean("booking_status");
+                        payment_status = doc.getBoolean("payment_status");
+                        event_status = doc.getBoolean("event_status");
+                        Date start_time = doc.getDate("start_timestamp"), end_time = doc.getDate("end_timestamp");
+                        classList.append("<b>");
+                        classList.append(doc.get("first_name"));
+                        classList.append(" ");
+                        classList.append(doc.get("last_name"));
+                        classList.append("<br />");
+                        Calendar newCalendar = Calendar.getInstance();
+                        newCalendar.setTime(doc.getDate("start_timestamp"));
+                        classList.append(week[newCalendar.get(Calendar.DAY_OF_WEEK)]);
+                        classList.append(" ");
+                        classList.append(month[newCalendar.get(Calendar.MONTH)]);
+                        classList.append(" ");
+                        classList.append(newCalendar.get(Calendar.DATE));
+                        classList.append(", ");
+                        if (start_time != null)
+                            classList.append(Universe.generateTimeString(start_time));
+                        classList.append(" - ");
+                        if (end_time != null)
+                            classList.append(Universe.generateTimeString(end_time));
+                        classList.append(" - ");
+                        classList.append(doc.getString("venue_name"));
+                        classList.append("<br />");
+                        if (!booking_status) {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#AA0000");
+                            classList.append("\">");
+                            classList.append("Booking Unconfirmed");
+                            classList.append("</span>");
+                        } else {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#00AA00");
+                            classList.append("\">");
+                            classList.append("Booking Confirmed!");
+                            classList.append("</span>");
+                        }
+                        classList.append("<br />");
+                        if (!payment_status) {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#AA0000");
+                            classList.append("\">");
+                            classList.append("Payment Unconfirmed");
+                            classList.append("</span>");
+                        } else {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#00AA00");
+                            classList.append("\">");
+                            classList.append("Payment Confirmed!");
+                            classList.append("</span>");
+                        }
+                        classList.append("<br />");
+                        if (!event_status) {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#AA0000");
+                            classList.append("\">");
+                            classList.append("Event Unconfirmed");
+                            classList.append("</span>");
+                        } else {
+                            classList.append("<span style=\"color: ");
+                            classList.append("#00AA00");
+                            classList.append("\">");
+                            classList.append("Event Completed!");
+                            classList.append("</span>");
+                        }
+                        classList.append("</b><br /><br /><br />");
+                    }
+                    main_screen_main_content.setText(Html.fromHtml(classList.toString()));
                 }
-                else{
-                    main_screen_placeholder_1.setVisibility(View.VISIBLE);
-                    main_screen_placeholder_2.setVisibility(View.VISIBLE);
-                    main_screen_placeholder_3.setVisibility(View.VISIBLE);
-                    main_screen_main_content.setVisibility(View.GONE);
-                }
-                classList = new StringBuilder();
-                classList.append("Here's your booking history: <br /><br />");
-                for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()){
-                    booking_status = doc.getBoolean("booking_status");
-                    payment_status = doc.getBoolean("payment_status");
-                    event_status = doc.getBoolean("event_status");
-                    Date start_time = doc.getDate("start_timestamp"), end_time = doc.getDate("end_timestamp");
-                    classList.append("<b>");
-                    classList.append(doc.get("first_name"));
-                    classList.append(" ");
-                    classList.append(doc.get("last_name"));
-                    classList.append("<br />");
-                    Calendar newCalendar = Calendar.getInstance();
-                    newCalendar.setTime(doc.getDate("start_timestamp"));
-                    classList.append(week[newCalendar.get(Calendar.DAY_OF_WEEK)]);
-                    classList.append(" ");
-                    classList.append(month[newCalendar.get(Calendar.MONTH)]);
-                    classList.append(" ");
-                    classList.append(newCalendar.get(Calendar.DATE));
-                    classList.append(", ");
-                    if(start_time != null) classList.append(Universe.generateTimeString(start_time));
-                    classList.append(" - ");
-                    if(end_time != null) classList.append(Universe.generateTimeString(end_time));
-                    classList.append(" - ");
-                    classList.append(doc.getString("venue_code"));
-                    classList.append("<br />");
-                    if(!booking_status){
-                        classList.append("<span style=\"color: ");
-                        classList.append("#AA0000");
-                        classList.append("\">");
-                        classList.append("Booking Unconfirmed");
-                        classList.append("</span>");
-                    }
-                    else{
-                        classList.append("<span style=\"color: ");
-                        classList.append("#00AA00");
-                        classList.append("\">");
-                        classList.append("Booking Confirmed!");
-                        classList.append("</span>");
-                    }
-                    classList.append("<br />");
-                    if(!payment_status){
-                        classList.append("<span style=\"color: ");
-                        classList.append("#AA0000");
-                        classList.append("\">");
-                        classList.append("Payment Unconfirmed");
-                        classList.append("</span>");
-                    }
-                    else{
-                        classList.append("<span style=\"color: ");
-                        classList.append("#00AA00");
-                        classList.append("\">");
-                        classList.append("Payment Confirmed!");
-                        classList.append("</span>");
-                    }
-                    classList.append("<br />");
-                    if(!event_status){
-                        classList.append("<span style=\"color: ");
-                        classList.append("#AA0000");
-                        classList.append("\">");
-                        classList.append("Event Unconfirmed");
-                        classList.append("</span>");
-                    }
-                    else{
-                        classList.append("<span style=\"color: ");
-                        classList.append("#00AA00");
-                        classList.append("\">");
-                        classList.append("Event Completed!");
-                        classList.append("</span>");
-                    }
-                    classList.append("</b><br /><br /><br />");
-                }
-                main_screen_main_content.setText(Html.fromHtml(classList.toString()));
             }
         });
 

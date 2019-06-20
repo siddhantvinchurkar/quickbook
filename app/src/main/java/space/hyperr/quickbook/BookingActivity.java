@@ -168,6 +168,7 @@ public class BookingActivity extends AppCompatActivity {
                 booking.put("start_timestamp", Universe.start_time);
                 booking.put("total_cost", cost);
                 booking.put("venue_code", venue_codes.get(selectedOptionPosition));
+                booking.put("venue_name", venues.get(selectedOptionPosition));
 
                 final ProgressDialog pd = new ProgressDialog(BookingActivity.this);
                 pd.setMessage("Loading");
