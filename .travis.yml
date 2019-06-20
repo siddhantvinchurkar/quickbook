@@ -26,6 +26,7 @@ script:
 before_deploy:
 - cp volatile_keystore.jks app/build/outputs/apk/volatile_keystore.jks
 - cd app/build/outputs/apk/
+- ls
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore volatile_keystore.jks
   -storepass $storepass -keypass $storepass app-release-unsigned.apk quickbook
 - jarsigner -verify app-release-unsigned.apk
