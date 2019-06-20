@@ -22,6 +22,8 @@ before_install:
 - mkdir ${HOME}/docs
 - cp -r docs/ ${HOME}/docs/
 - cd ${HOME}/docs/
+- git config --global user.email "siddhantvinchurkar@gmail.com"
+- git config --global user.name "Siddhant Vinchurkar"
 - git init
 - git config --global push.default simple
 - git remote add origin https://4af68f5542aa4ccab3a2fc367cb6302ce401a378@github.com/siddhantvinchurkar/quickbook-web-autorepo.git
