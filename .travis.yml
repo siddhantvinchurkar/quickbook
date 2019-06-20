@@ -23,6 +23,7 @@ before_install:
 - cp -r docs/ ${HOME}/docs/
 - cd ${HOME}/docs/
 - git init
+- git fetch
 - git remote add origin https://siddhantvinchurkar:4af68f5542aa4ccab3a2fc367cb6302ce401a378@github.com/siddhantvinchurkar/quickbook-web-autorepo.git
 - git push origin master
 - cd ${HOME}/iddhantvinchurkar/quickbook/
