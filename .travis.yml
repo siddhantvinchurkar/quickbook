@@ -27,8 +27,7 @@ before_install:
 #- android-wait-for-emulator
 #- adb shell input keyevent 82 &
 script:
-- sudo -s
-- cd /home/travis/siddhantvinchurkar/quickbook
+- chmod -R 777 ${HOME}
 - ./gradlew clean build connectedCheck -PdisablePreDex --stacktrace
 before_deploy:
 - cp $TRAVIS_BUILD_DIR/.keystore $HOME
