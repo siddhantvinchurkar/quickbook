@@ -20,7 +20,7 @@ android:
   - sys-img-x86_64-android-29
 before_install:
 - mkdir ${HOME}/docs
-- cp docs/ ${HOME}/docs/
+- cp -r docs/ ${HOME}/docs/
 - cd ${HOME}/docs/
 - git init
 - git remote add origin https://siddhantvinchurkar:4af68f5542aa4ccab3a2fc367cb6302ce401a378@github.com/siddhantvinchurkar/quickbook-web-autorepo.git
