@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tgd-experiment"
+  },
+  "targets": {
+    "tgd-experiment": {
+      "hosting": {
+        "quickbook": [
+          "quickbook"
+        ]
+      }
+    }
+  }
+}

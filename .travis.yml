@@ -1,47 +1,60 @@
 sudo: required
-language: android
-dist: bionic
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
-  - "$HOME/.android/build-cache"
-android:
-  components:
-  - tools
-  - tools
-  - platform-tools
-  - build-tools-29.0.0
-  - android-29
-  - extra
-  - sys-img-x86_64-android-29
-before_install:
-- openssl aes-256-cbc -K $encrypted_8fe2421a2225_key -iv $encrypted_8fe2421a2225_iv
-  -in volatile_keystore.jks.enc -out volatile_keystore.jks -d
-#before_script:
-#- echo no | android create avd --force -n test -t android-29 --abi x86_64 -c 16000M
-#- emulator -avd test -no-audio -no-window &
-#- android-wait-for-emulator
-#- adb shell input keyevent 82 &
-script:
-- "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
-before_deploy:
-- cp $TRAVIS_BUILD_DIR/.keystore $HOME
-- cd app/build/outputs/apk/
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore volatile_keystore.jks
-  -storepass $storepass -keypass $storepass app-release-unsigned.apk volatile_keystore.jks
-- jarsigner -verify app-release-unsigned.apk
-- "${ANDROID_HOME}/build-tools/29.0.0/zipalign -v 4 app-release-unsigned.apk QuickBook.apk"
-deploy:
-  provider: releases
-  file: QuickBook.apk
-  skip_cleanup: true
-  on:
-    repo: siddhantvinchurkar/quickbook
-    tags: true
-  api_key: "$gak"
-after_deploy:
-- echo "App Deployed!"
+matrix:
+  include:
+  
+    - language: android
+      dist: bionic
+      before_cache:
+      - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+      - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+        - "$HOME/.gradle/caches/"
+        - "$HOME/.gradle/wrapper/"
+        - "$HOME/.android/build-cache"
+      android:
+        components:
+        - tools
+        - tools
+        - platform-tools
+        - build-tools-29.0.0
+        - android-29
+        - extra
+        - sys-img-x86_64-android-29
+      before_install:
+      - openssl aes-256-cbc -K $encrypted_8fe2421a2225_key -iv $encrypted_8fe2421a2225_iv
+        -in volatile_keystore.jks.enc -out volatile_keystore.jks -d
+      script:
+      - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+      before_deploy:
+      - cp $TRAVIS_BUILD_DIR/.keystore $HOME
+      - cd app/build/outputs/apk/
+      - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore volatile_keystore.jks
+        -storepass $storepass -keypass $storepass app-release-unsigned.apk volatile_keystore.jks
+      - jarsigner -verify app-release-unsigned.apk
+      - "${ANDROID_HOME}/build-tools/29.0.0/zipalign -v 4 app-release-unsigned.apk QuickBook.apk"
+      deploy:
+        provider: releases
+        file: QuickBook.apk
+        skip_cleanup: true
+        on:
+          repo: siddhantvinchurkar/quickbook
+          tags: true
+        api_key: "$gak"
+      after_deploy:
+      - echo "App Deployed!"
+      
+     - language: node_js
+       node_js:
+        - "8"
+       script:
+        - echo "Deploy!"
+       install:
+        - npm install -g firebase-tools
+        - cd functions/
+        - npm install
+        - cd ..
+       after_success:
+        - firebase target:apply hosting quickbook quickbook --token $FIREBASE_TOKEN
+        - firebase deploy --project tgd-experiment --token $FIREBASE_TOKEN
+        
