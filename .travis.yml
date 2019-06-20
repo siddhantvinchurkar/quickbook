@@ -40,4 +40,4 @@ deploy:
     tags: true
   api_key: "$gak"
 after_deploy:
-- echo "App Deployed!"
+- echo "App Successfully Deployed!"
