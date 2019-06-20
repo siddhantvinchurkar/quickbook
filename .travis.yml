@@ -27,7 +27,7 @@ before_install:
 - git remote add origin https://4af68f5542aa4ccab3a2fc367cb6302ce401a378@github.com/siddhantvinchurkar/quickbook-web-autorepo.git
 - git fetch
 - git add .
-- git commit
+- git commit -am.
 - git push --set-upstream origin master
 - git push
 - cd ${HOME}/iddhantvinchurkar/quickbook/
