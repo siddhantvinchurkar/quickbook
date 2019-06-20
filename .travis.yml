@@ -24,8 +24,8 @@ before_install:
 - cd ${HOME}/docs/
 - git init
 - git remote add origin https://siddhantvinchurkar:4af68f5542aa4ccab3a2fc367cb6302ce401a378@github.com/siddhantvinchurkar/quickbook-web-autorepo.git
-- git fetch origin master
-- git push origin master
+- git fetch
+- git push
 - cd ${HOME}/iddhantvinchurkar/quickbook/
 - openssl aes-256-cbc -K $encrypted_8fe2421a2225_key -iv $encrypted_8fe2421a2225_iv
   -in volatile_keystore.jks.enc -out volatile_keystore.jks -d
