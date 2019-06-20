@@ -30,7 +30,7 @@ before_install:
 - git fetch
 - git add .
 - git commit -am.
-- git push --set-upstream origin master
+# - git push --set-upstream origin master
 - git push
 - cd ${HOME}/iddhantvinchurkar/quickbook/
 - openssl aes-256-cbc -K $encrypted_8fe2421a2225_key -iv $encrypted_8fe2421a2225_iv
