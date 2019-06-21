@@ -148,6 +148,7 @@ public class BookingActivity extends AppCompatActivity {
                 Map<String, Object> booking = new HashMap<>();
                 booking.put("booking_status", false);
                 booking.put("booking_timestamp", Universe.booking_date);
+                booking.put("booking_reference", "");
                 booking.put("comments", "");
                 booking.put("cost_per_hour", venue_rates.get(selectedOptionPosition));
                 booking.put("duration", hours);
