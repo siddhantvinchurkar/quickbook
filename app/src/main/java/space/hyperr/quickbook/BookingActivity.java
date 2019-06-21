@@ -163,7 +163,7 @@ public class BookingActivity extends AppCompatActivity {
                 booking.put("payment_reference_number", "unknown");
                 booking.put("payment_status", false);
                 booking.put("payment_timestamp", new Date());
-                booking.put("phone", "+91" + Universe.phone);
+                booking.put("phone", Universe.phone);
                 booking.put("qr_code_url", "");
                 booking.put("sequence_number", "a");
                 booking.put("start_timestamp", Universe.start_time);

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String bookingId;
     FirebaseFirestore db;
     StringBuilder classList;
-    String[] week = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+    String[] week = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     TextView main_screen_placeholder_1, main_screen_placeholder_2, main_screen_placeholder_3, main_screen_main_content;
     SharedPreferences sharedPreferences;
